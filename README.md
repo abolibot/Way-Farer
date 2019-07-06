@@ -1,2 +1,2 @@
 # Way-Farer
-Andela Developer Challenger
+Andela Developer Challenge

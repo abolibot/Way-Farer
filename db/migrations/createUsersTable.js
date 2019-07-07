@@ -1,6 +1,6 @@
-import pool from 'pg';
+import { Pool } from 'pg';
 
-const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: true
+const pool = new Pool({ //eslint-disable-line
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
 });

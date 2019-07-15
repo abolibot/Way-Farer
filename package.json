@@ -4,7 +4,7 @@
   "description": "Andela Developer Challenge",
   "private": true,
   "scripts": {
-    "test": "mocha --require @babel/register 'tests/**/*.test.js' --recursive --reporter progress test",
+    "test": "mocha --require @babel/register 'tests/**/*.test.js'",
     "webpack": "webpack",
     "start": "babel-node buildScripts/distServer.js",
     "prestart:dev": "npm-run-all --parallel security-check lint:watch",
@@ -15,7 +15,9 @@
     "clean-dist": "rimraf ./dist && mkdir dist",
     "prebuild": "npm-run-all clean-dist lint",
     "build": "babel-node buildScripts/build.js",
-    "postbuild": "babel-node buildScripts/distServer.js"
+    "postbuild": "babel-node buildScripts/distServer.js",
+    "createDbTables": "babel-node db/migrations/users createUsersTable && babel-node db/migrations/users seedUser && babel-node db/migrations/buses createBusesTable && babel-node db/migrations/trips createTripsTable && babel-node db/migrations/bookings createBookingsTable",
+    "dropDbTables": "babel-node db/migrations/users dropUsersTable && babel-node db/migrations/bookings dropBookingsTable && babel-node db/migrations/buses dropBusesTable && babel-node db/migrations/trips dropTripsTable"
   },
   "repository": {
     "type": "git",
@@ -29,9 +31,14 @@
   "homepage": "https://github.com/abolibot/Way-Farer#readme",
   "dependencies": {
     "@babel/runtime": "^7.5.1",
+    "@hapi/joi": "^15.1.0",
+    "@types/hapi__joi": "^15.0.2",
+    "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "make-runnable": "^1.3.6",
     "pg": "^7.11.0"
   },
   "devDependencies": {

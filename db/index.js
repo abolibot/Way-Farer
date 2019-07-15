@@ -6,16 +6,17 @@ const pool = new Pool({
   ssl: true,
 });
 
-export default {
-  query: (text, params) => { // eslint-disable-line
-    return new Promise((resolve, reject) => {
-      pool.query(text, params)
-        .then((res) => {
-          resolve(res);
-        })
-        .catch((err) => {
-          reject(err);
-        });
+const query = (text, params) => new Promise((resolve, reject) => {
+  pool.query(text, params)
+    .then((res) => {
+      resolve(res);
+    })
+    .catch((err) => {
+      reject(err);
     });
-  },
+});
+
+export {
+  pool,
+  query,
 };

@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 import { pool, query } from '../index';
 import 'dotenv/config';
-import hashPassword from '../../server/helpers/passwordEncryption';
-import generateToken from '../../server/helpers/tokenGeneration';
+import hashPassword from '../../helpers/passwordEncryption';
+import generateToken from '../../helpers/tokenGeneration';
 
 pool.on('connect', () => {
   console.log('connected to the db');

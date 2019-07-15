@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 /* eslint-disable camelCase */
-import { query } from '../../db/index';
+import { query } from '../db/index';
 import 'dotenv/config';
 import hashPassword from '../helpers/passwordEncryption';
 import generateToken from '../helpers/tokenGeneration';

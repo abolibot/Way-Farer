@@ -1,7 +1,6 @@
 const signup = {
   scenarios: {
     withoutEmail: {
-      email: '',
       password: 'pass4321',
       firstNamae: 'Oluwatobi',
       lastName: 'Alaran',
@@ -16,58 +15,62 @@ const signup = {
 
     withoutPassword: {
       email: 'alarantobiloba@gmail.com',
-      password: '',
-      firstNamae: 'Oluwatobi',
+      firstName: 'Oluwatobi',
       lastName: 'Alaran',
     },
 
     withInvalidPassword: {
       email: 'alarantobiloba@gmail.com',
       password: '12345',
-      firstNamae: 'Oluwatobi',
+      firstName: 'Oluwatobi',
       lastName: 'Alaran',
     },
 
     withoutFirstName: {
       email: 'alarantobiloba@gmail.com',
       password: 'pass4321',
-      firstNamae: '',
       lastName: 'Alaran',
     },
 
     withInvalidFirstName: {
       email: 'alarantobiloba@gmail.com',
       password: 'pass4321',
-      firstNamae: '12ore',
+      firstName: '12ore',
       lastName: 'Alaran',
     },
 
     withoutLastName: {
       email: 'alarantobiloba@gmail.com',
       password: 'pass4321',
-      firstNamae: 'Oluwatobi',
-      lastName: '',
+      firstName: 'Oluwatobi',
     },
 
     withInvalidLastName: {
       email: 'alarantobiloba@gmail.com',
       password: 'pass4321',
-      firstNamae: 'Oluwatobi',
+      firstName: 'Oluwatobi',
       lastName: '4frx fr7',
     },
 
-    withExistingDetails: {
-      email: 'existinguser@gmail.com',
-      password: 'password1',
-      firstNamae: 'existing',
-      lastName: 'user',
+    withValidDetails: {
+      email: 'testUser@gmail.com',
+      password: 'pass4321',
+      firstName: 'Test',
+      lastName: 'User',
     },
 
-    withValidDetails: {
-      email: 'alarantobiloba@gmail.com',
+    user: {
+      email: 'existingUser@gmail.com',
       password: 'pass4321',
-      firstNamae: 'Oluwatobi',
-      lastName: 'Alaran',
+      firstName: 'Existing',
+      lastName: 'User',
+    },
+
+    withExistingDetails: {
+      email: 'existingUser@gmail.com',
+      password: 'pass4321',
+      firstName: 'Existing',
+      lastName: 'User',
     },
   },
 
@@ -76,71 +79,71 @@ const signup = {
       withoutEmail: {
         email: '',
         password: 'pass4321',
-        firstNamae: 'Oluwatobi',
+        firstName: 'Oluwatobi',
         lastName: 'Alaran',
       },
 
       withInvalidEmail: {
         email: 'fssagfds.dsfd',
         password: 'pass4321',
-        firstNamae: 'Oluwatobi',
+        firstName: 'Oluwatobi',
         lastName: 'Alaran',
       },
 
       withoutPassword: {
         email: 'alarantobiloba@gmail.com',
         password: '',
-        firstNamae: 'Oluwatobi',
+        firstName: 'Oluwatobi',
         lastName: 'Alaran',
       },
 
       withInvalidPassword: {
         email: 'alarantobiloba@gmail.com',
         password: '12345',
-        firstNamae: 'Oluwatobi',
+        firstName: 'Oluwatobi',
         lastName: 'Alaran',
       },
 
       withoutFirstName: {
         email: 'alarantobiloba@gmail.com',
         password: 'pass4321',
-        firstNamae: '',
+        firstName: '',
         lastName: 'Alaran',
       },
 
       withInvalidFirstName: {
         email: 'alarantobiloba@gmail.com',
         password: 'pass4321',
-        firstNamae: '12ore',
+        firstName: '12ore',
         lastName: 'Alaran',
       },
 
       withoutLastName: {
         email: 'alarantobiloba@gmail.com',
         password: 'pass4321',
-        firstNamae: 'Oluwatobi',
+        firstName: 'Oluwatobi',
         lastName: '',
       },
 
       withInvalidLastName: {
         email: 'alarantobiloba@gmail.com',
         password: 'pass4321',
-        firstNamae: 'Oluwatobi',
+        firstName: 'Oluwatobi',
         lastName: '4frx fr7',
       },
 
       withExistingDetails: {
         email: 'existinguser@gmail.com',
         password: 'password1',
-        firstNamae: 'existing',
+        firstName: 'existing',
         lastName: 'user',
       },
 
       withValidDetails: {
-        email: 'alarantobiloba@gmail.com',
+        email: 'testUser@gmail.com',
         password: 'pass4321',
-        firstNamae: 'Oluwatobi',
-        lastName: 'Alaran',
+        firstName: 'Test',
+        lastName: 'User',
       },
     };
   },

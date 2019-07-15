@@ -72,6 +72,13 @@ const signup = {
       firstName: 'Existing',
       lastName: 'User',
     },
+
+    ExistingDetails: {
+      email: 'existingUser@gmail.com',
+      password: 'pass4321',
+      firstName: 'Existing',
+      lastName: 'User',
+    },
   },
 
   reset: () => {

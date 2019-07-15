@@ -4,7 +4,7 @@ import webpack from 'webpack';
 export default {
   devtool: 'inline-source-map',
   mode: 'development',
-  entry: './app/server.js',
+  entry: './server/server.js',
   target: 'node',
   output: {
     path: path.resolve(__dirname, 'app'),

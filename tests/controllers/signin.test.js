@@ -69,16 +69,17 @@ describe('POST /api/v1/auth/signin', () => {
     chai.request(app)
       .post('/api/v1/auth/signin')
       .send({
-        email: `${signinData.users[0].email}abah`,
+        email: 'existingemail@gmail.com',
         password: signinData.users[0].password,
       })
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(400);
         res.body.error.should.equal('invalid login details');
-      });
+      })
+      .catch(err => err);
     done();
   });
 
@@ -89,13 +90,14 @@ describe('POST /api/v1/auth/signin', () => {
         email: signinData.users[0].email,
         password: `${signinData.users[0].password}abah`,
       })
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(400);
         res.body.error.should.equal('invalid login details');
-      });
+      })
+      .catch(err => err);
     done();
   });
 

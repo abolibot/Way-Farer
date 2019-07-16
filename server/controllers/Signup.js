@@ -21,6 +21,7 @@ const signup = async (req, res) => {
 
   try {
     const { rows } = await query(queryText, values);
+    // const user = rows[0];
     const token = generateToken(rows[0]);
     const output = {
       user_id: rows[0].id,
@@ -29,9 +30,6 @@ const signup = async (req, res) => {
     };
     return res.status(201).json({ status: 201, message: 'user created successfully', data: output });
   } catch (error) {
-    if (error.routine === '_bt_check_unique') {
-      return res.status(409).json({ status: 409, error: 'User with EMAIL already exist' });
-    }
     return res.status(500).json({ status: 500, error });
   }
 };

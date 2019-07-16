@@ -145,13 +145,14 @@ describe('POST /api/v1/auth/signup', () => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send(signupData.scenarios.withExistingDetails)
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(409);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(409);
         res.body.error.should.equal('User with EMAIL already exist');
-      });
+      })
+      .catch(err => err);
     done();
   });
 });

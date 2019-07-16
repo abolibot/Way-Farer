@@ -13,6 +13,7 @@
     "lint:watch": "npm run lint",
     "clean-dist": "rimraf ./dist",
     "coveralls": "npm test && nyc report --reporter=text-lcov | coveralls",
+    "test-coverage": "npm test && nyc report --reporter=lcov",
     "prebuild": "npm-run-all lint dropDbTables createDbTables",
     "build": "babel server --out-dir dist",
     "postbuild": "babel-node dist/server.js",

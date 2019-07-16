@@ -17,8 +17,8 @@
     "prebuild": "npm-run-all lint dropDbTables createDbTables",
     "build": "babel server --out-dir dist",
     "postbuild": "babel-node dist/server.js",
-    "createDbTables": "babel-node db/migrations/users createUsersTable && babel-node db/migrations/users seedUser && babel-node db/migrations/buses createBusesTable && babel-node db/migrations/trips createTripsTable && babel-node db/migrations/bookings createBookingsTable",
-    "dropDbTables": "babel-node db/migrations/users dropUsersTable && babel-node db/migrations/bookings dropBookingsTable && babel-node db/migrations/buses dropBusesTable && babel-node db/migrations/trips dropTripsTable"
+    "createDbTables": "babel-node server/db/migrations/users createUsersTable && babel-node server/db/migrations/users seedUser && babel-node server/db/migrations/buses createBusesTable && babel-node server/db/migrations/trips createTripsTable && babel-node server/db/migrations/bookings createBookingsTable",
+    "dropDbTables": "babel-node server/db/migrations/users dropUsersTable && babel-node server/db/migrations/bookings dropBookingsTable && babel-node server/db/migrations/buses dropBusesTable && babel-node server/db/migrations/trips dropTripsTable"
   },
   "repository": {
     "type": "git",

@@ -69,7 +69,7 @@ describe('POST /api/v1/auth/signin', () => {
     chai.request(app)
       .post('/api/v1/auth/signin')
       .send({
-        email: `${signinData.users[0].email}abah`,
+        email: 'existingemail@gmail.com',
         password: signinData.users[0].password,
       })
       .end((err, res) => {

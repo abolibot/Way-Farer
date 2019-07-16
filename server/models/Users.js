@@ -6,6 +6,11 @@ const userModel = {
     VALUES($1, $2, $3, $4, $5)
     returning *
   `,
+
+  findUserByEmail: `
+  SELECT * FROM
+    users WHERE email = $1
+  `,
 };
 
 export default userModel;

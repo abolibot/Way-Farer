@@ -14,7 +14,7 @@ const signup = async (req, res) => {
   const values = [
     req.value.body.firstName,
     req.value.body.lastName,
-    req.value.body.email,
+    req.value.body.email.toLowerCase(),
     false,
     hashedPassword,
   ];

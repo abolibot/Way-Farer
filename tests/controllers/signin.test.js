@@ -13,13 +13,14 @@ describe('POST /api/v1/auth/signin', () => {
     chai.request(app)
       .post('/api/v1/auth/signin')
       .send(signinData.scenarios.withoutEmail)
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(400);
         res.body.error.should.equal('"email" is required');
-      });
+      })
+      .catch(err => err);
     done();
   });
 
@@ -27,13 +28,14 @@ describe('POST /api/v1/auth/signin', () => {
     chai.request(app)
       .post('/api/v1/auth/signin')
       .send(signinData.scenarios.withInvalidEmail)
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(400);
         res.body.error.should.equal('"email" must be a valid email');
-      });
+      })
+      .catch(err => err);
     done();
   });
 
@@ -41,13 +43,14 @@ describe('POST /api/v1/auth/signin', () => {
     chai.request(app)
       .post('/api/v1/auth/signin')
       .send(signinData.scenarios.withoutPassword)
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(400);
         res.body.error.should.equal('"password" is required');
-      });
+      })
+      .catch(err => err);
     done();
   });
 
@@ -55,13 +58,14 @@ describe('POST /api/v1/auth/signin', () => {
     chai.request(app)
       .post('/api/v1/auth/signin')
       .send(signinData.scenarios.withInvalidPassword)
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(400);
         res.body.error.should.equal('"password" length must be at least 6 characters long');
-      });
+      })
+      .catch(err => err);
     done();
   });
 

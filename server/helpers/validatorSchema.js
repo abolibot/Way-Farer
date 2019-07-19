@@ -11,6 +11,10 @@ const schemas = {
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required(),
   }),
+  getAllTrips: Joi.object().keys({
+    user_id: Joi.number().integer().min(1).required(),
+    is_admin: Joi.boolean().required(),
+  }),
 };
 
 export default schemas;

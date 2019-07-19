@@ -11,59 +11,48 @@ chai.should();
 const { getAllTripsData } = tripsData;
 
 describe('GET /api/v1/trips', () => {
-  it('should return \'"token" is required\' message when token is omitted in request', (done) => {
-    chai.request(app)
-      .get('/api/v1/trips')
-      .send(getAllTripsData.scenarios.withoutToken)
-      .end((err, res) => {
-        res.status.should.be.equal(400);
-        res.body.should.have.property('status');
-        res.body.should.have.property('error');
-        res.body.status.should.equal(400);
-        res.body.error.should.equal('"token" is required');
-      });
-    done();
-  });
-
-  it('should return \'\' message when req.token is not a valid token', (done) => {
-    chai.request(app)
-      .get('/api/v1/trips')
-      .send(getAllTripsData.scenarios.withInvalidTokenFormat)
-      .end((err, res) => {
-        res.status.should.be.equal();
-        res.body.should.have.property('status');
-        res.body.should.have.property('error');
-        res.body.status.should.equal();
-        res.body.error.should.equal('');
-      });
-    done();
-  });
-
   it('should return \'"user_id" is required\' message when user_id is omitted in request', (done) => {
     chai.request(app)
       .get('/api/v1/trips')
       .send(getAllTripsData.scenarios.withoutUserId)
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(400);
         res.body.error.should.equal('"user_id" is required');
-      });
+      })
+      .catch(err => err);
     done();
   });
 
-  it('should return \'\' message when req.user_id is not a valid user_id', (done) => {
+  it('should return \'"user_id" must be a number\' message when req.user_id is not a number', (done) => {
     chai.request(app)
       .get('/api/v1/trips')
       .send(getAllTripsData.scenarios.withInvalidUserId)
-      .end((err, res) => {
-        res.status.should.be.equal();
+      .then((res) => {
+        res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
-        res.body.status.should.equal();
-        res.body.error.should.equal('');
-      });
+        res.body.status.should.equal(400);
+        res.body.error.should.equal('"user_id" must be a number');
+      })
+      .catch(err => err);
+    done();
+  });
+
+  it('should return \'"user_id" must be larger than or equal to 1\' message when req.user_id is zero', (done) => {
+    chai.request(app)
+      .get('/api/v1/trips')
+      .send(getAllTripsData.scenarios.withZeroAsUserId)
+      .then((res) => {
+        res.status.should.be.equal(400);
+        res.body.should.have.property('status');
+        res.body.should.have.property('error');
+        res.body.status.should.equal(400);
+        res.body.error.should.equal('"user_id" must be larger than or equal to 1');
+      })
+      .catch(err => err);
     done();
   });
 
@@ -71,27 +60,29 @@ describe('GET /api/v1/trips', () => {
     chai.request(app)
       .get('/api/v1/trips')
       .send(getAllTripsData.scenarios.withoutIsAdmin)
-      .end((err, res) => {
-        res.status.should.be.equal();
+      .then((res) => {
+        res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
-        res.body.status.should.equal();
+        res.body.status.should.equal(400);
         res.body.error.should.equal('"is_admin" is required');
-      });
+      })
+      .catch(err => err);
     done();
   });
 
-  it('should return \'\' message when req.is_admin is not a valid is_admin', (done) => {
+  it('should return \'"is_admin" must be a boolean\' message when req.is_admin is not a valid is_admin', (done) => {
     chai.request(app)
       .get('/api/v1/trips')
       .send(getAllTripsData.scenarios.withInvalidIsAdmin)
-      .end((err, res) => {
-        res.status.should.be.equal(401);
+      .then((res) => {
+        res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
-        res.body.status.should.equal(401);
-        res.body.error.should.equal('');
-      });
+        res.body.status.should.equal(400);
+        res.body.error.should.equal('"is_admin" must be a boolean');
+      })
+      .catch(err => err);
     done();
   });
 
@@ -99,27 +90,14 @@ describe('GET /api/v1/trips', () => {
     chai.request(app)
       .get('/api/v1/trips')
       .send(getAllTripsData.scenarios.withUndefinedReqHeadersAuthorization)
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(401);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(401);
-        res.body.error.should.equal('you need a token to access this route');
-      });
-    done();
-  });
-
-  it('should return \'\' message when user could not be authenticated', (done) => {
-    chai.request(app)
-      .get('/api/v1/trips')
-      .send(getAllTripsData.scenarios.withUserUnauthenticated)
-      .end((err, res) => {
-        res.status.should.be.equal(401);
-        res.body.should.have.property('status');
-        res.body.should.have.property('error');
-        res.body.status.should.equal(401);
-        res.body.error.should.equal('you do not have permissions to access this endpoint');
-      });
+        res.body.error.should.equal('You need a token to access this route');
+      })
+      .catch(err => err);
     done();
   });
 
@@ -127,13 +105,14 @@ describe('GET /api/v1/trips', () => {
     chai.request(app)
       .get('/api/v1/trips')
       .send(getAllTripsData.scenarios.withInvalidToken)
-      .end((err, res) => {
+      .then((err, res) => {
         res.status.should.be.equal(401);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(401);
         res.body.error.should.equal('invalid token');
-      });
+      })
+      .catch(err => err);
     done();
   });
 

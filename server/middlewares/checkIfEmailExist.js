@@ -1,11 +1,10 @@
 import { query } from '../db/index';
 import userModel from '../models/Users';
 
-const { findUserByEmail } = userModel;
-const queryText = findUserByEmail;
-
 const checkIfEmailExists = async (req, res, next) => {
-  const value = [req.value.body.email];
+  const { findUserByEmail } = userModel;
+  const queryText = findUserByEmail;
+  const value = [req.value.body.email.toLowerCase()];
   try {
     const { rows } = await query(queryText, value);
     const user = rows[0];

@@ -15,13 +15,14 @@ describe('GET /api/v1/trips', () => {
     chai.request(app)
       .get('/api/v1/trips')
       .send(getAllTripsData.scenarios.withoutUserId)
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(400);
         res.body.error.should.equal('"user_id" is required');
-      });
+      })
+      .catch(err => err);
     done();
   });
 
@@ -29,13 +30,14 @@ describe('GET /api/v1/trips', () => {
     chai.request(app)
       .get('/api/v1/trips')
       .send(getAllTripsData.scenarios.withInvalidUserId)
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(400);
         res.body.error.should.equal('"user_id" must be a number');
-      });
+      })
+      .catch(err => err);
     done();
   });
 
@@ -43,13 +45,14 @@ describe('GET /api/v1/trips', () => {
     chai.request(app)
       .get('/api/v1/trips')
       .send(getAllTripsData.scenarios.withZeroAsUserId)
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(400);
         res.body.error.should.equal('"user_id" must be larger than or equal to 1');
-      });
+      })
+      .catch(err => err);
     done();
   });
 
@@ -57,13 +60,14 @@ describe('GET /api/v1/trips', () => {
     chai.request(app)
       .get('/api/v1/trips')
       .send(getAllTripsData.scenarios.withoutIsAdmin)
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(400);
         res.body.error.should.equal('"is_admin" is required');
-      });
+      })
+      .catch(err => err);
     done();
   });
 
@@ -71,13 +75,14 @@ describe('GET /api/v1/trips', () => {
     chai.request(app)
       .get('/api/v1/trips')
       .send(getAllTripsData.scenarios.withInvalidIsAdmin)
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(400);
         res.body.error.should.equal('"is_admin" must be a boolean');
-      });
+      })
+      .catch(err => err);
     done();
   });
 
@@ -85,13 +90,14 @@ describe('GET /api/v1/trips', () => {
     chai.request(app)
       .get('/api/v1/trips')
       .send(getAllTripsData.scenarios.withUndefinedReqHeadersAuthorization)
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(401);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(401);
         res.body.error.should.equal('You need a token to access this route');
-      });
+      })
+      .catch(err => err);
     done();
   });
 

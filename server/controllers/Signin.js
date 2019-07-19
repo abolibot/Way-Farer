@@ -9,7 +9,7 @@ import userModel from '../models/Users';
 const { findUserByEmail } = userModel;
 const queryText = findUserByEmail;
 
-const signin = async (req, res) => {
+const signinController = async (req, res) => {
   const value = [req.value.body.email];
   try {
     const { rows } = await query(queryText, value);
@@ -34,4 +34,4 @@ const signin = async (req, res) => {
   }
 };
 
-export default signin;
+export default signinController;

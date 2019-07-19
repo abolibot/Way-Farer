@@ -13,13 +13,14 @@ describe('POST /api/v1/auth/signup', () => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send(signupData.scenarios.withoutEmail)
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(400);
         res.body.error.should.equal('"email" is required');
-      });
+      })
+      .catch(err => err);
     done();
   });
 
@@ -27,13 +28,14 @@ describe('POST /api/v1/auth/signup', () => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send(signupData.scenarios.withInvalidEmail)
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(400);
         res.body.error.should.equal('"email" must be a valid email');
-      });
+      })
+      .catch(err => err);
     done();
   });
 
@@ -41,13 +43,14 @@ describe('POST /api/v1/auth/signup', () => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send(signupData.scenarios.withoutPassword)
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(400);
         res.body.error.should.equal('"password" is required');
-      });
+      })
+      .catch(err => err);
     done();
   });
 
@@ -55,13 +58,14 @@ describe('POST /api/v1/auth/signup', () => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send(signupData.scenarios.withInvalidPassword)
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(400);
         res.body.error.should.equal('"password" length must be at least 6 characters long');
-      });
+      })
+      .catch(err => err);
     done();
   });
 
@@ -69,13 +73,14 @@ describe('POST /api/v1/auth/signup', () => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send(signupData.scenarios.withoutFirstName)
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(400);
         res.body.error.should.equal('"firstName" is required');
-      });
+      })
+      .catch(err => err);
     done();
   });
 
@@ -83,13 +88,14 @@ describe('POST /api/v1/auth/signup', () => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send(signupData.scenarios.withInvalidFirstName)
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(400);
         res.body.error.should.equal(`"firstName" with value "${signupData.scenarios.withInvalidFirstName.firstName}" fails to match the required pattern: /^([a-zA-Z]{2,30}[-]{0,1}[a-zA-Z]{2,30})$/`);
-      });
+      })
+      .catch(err => err);
     done();
   });
 
@@ -97,13 +103,14 @@ describe('POST /api/v1/auth/signup', () => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send(signupData.scenarios.withoutLastName)
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(400);
         res.body.error.should.equal('"lastName" is required');
-      });
+      })
+      .catch(err => err);
     done();
   });
 
@@ -111,13 +118,14 @@ describe('POST /api/v1/auth/signup', () => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send(signupData.scenarios.withInvalidLastName)
-      .end((err, res) => {
+      .then((res) => {
         res.status.should.be.equal(400);
         res.body.should.have.property('status');
         res.body.should.have.property('error');
         res.body.status.should.equal(400);
         res.body.error.should.equal(`"lastName" with value "${signupData.scenarios.withInvalidLastName.lastName}" fails to match the required pattern: /^([a-zA-Z]{2,30}[-]{0,1}[a-zA-Z]{2,30})$/`);
-      });
+      })
+      .catch(err => err);
     done();
   });
 

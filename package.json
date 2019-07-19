@@ -14,9 +14,8 @@
     "clean-dist": "rimraf ./dist",
     "coveralls": "npm test && nyc report --reporter=text-lcov | coveralls",
     "test-coverage": "npm test && nyc report --reporter=lcov",
-    "prebuild": "npm-run-all lint dropDbTables createDbTables",
+    "prebuild": "npm-run-all dropDbTables createDbTables",
     "build": "babel server --out-dir dist",
-    "postbuild": "babel-node dist/server.js",
     "createDbTables": "babel-node server/db/migrations/users createUsersTable && babel-node server/db/migrations/users seedUser && babel-node server/db/migrations/buses createBusesTable && babel-node server/db/migrations/trips createTripsTable && babel-node server/db/migrations/bookings createBookingsTable",
     "dropDbTables": "babel-node server/db/migrations/users dropUsersTable && babel-node server/db/migrations/bookings dropBookingsTable && babel-node server/db/migrations/buses dropBusesTable && babel-node server/db/migrations/trips dropTripsTable"
   },
@@ -66,5 +65,8 @@
     "path": "^0.12.7",
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5"
+  },
+  "engines": {
+    "node": "10.15.1"
   }
 }

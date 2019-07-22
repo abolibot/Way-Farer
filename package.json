@@ -14,9 +14,8 @@
     "clean-dist": "rimraf ./dist",
     "coveralls": "npm test && nyc report --reporter=text-lcov | coveralls",
     "test-coverage": "npm test && nyc report --reporter=lcov",
-    "prebuild": "npm-run-all lint dropDbTables createDbTables",
+    "prebuild": "npm-run-all dropDbTables createDbTables",
     "build": "babel server --out-dir dist",
-    "postbuild": "babel-node dist/server.js",
     "createDbTables": "babel-node server/db/migrations/users createUsersTable && babel-node server/db/migrations/users seedUser && babel-node server/db/migrations/buses createBusesTable && babel-node server/db/migrations/trips createTripsTable && babel-node server/db/migrations/bookings createBookingsTable",
     "dropDbTables": "babel-node server/db/migrations/users dropUsersTable && babel-node server/db/migrations/bookings dropBookingsTable && babel-node server/db/migrations/buses dropBusesTable && babel-node server/db/migrations/trips dropTripsTable"
   },
@@ -31,6 +30,13 @@
   },
   "homepage": "https://github.com/abolibot/Way-Farer#readme",
   "dependencies": {
+    "@babel/node": "^7.5.0",
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.0",
+    "@babel/plugin-transform-runtime": "^7.5.0",
+    "@babel/preset-env": "^7.5.0",
+    "@babel/register": "^7.4.4",
+    "babel-loader": "^8.0.6",
     "@babel/runtime": "^7.5.1",
     "@hapi/joi": "^15.1.0",
     "@types/hapi__joi": "^15.0.2",
@@ -43,13 +49,6 @@
     "pg": "^7.11.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.0",
-    "@babel/core": "^7.5.0",
-    "@babel/node": "^7.5.0",
-    "@babel/plugin-transform-runtime": "^7.5.0",
-    "@babel/preset-env": "^7.5.0",
-    "@babel/register": "^7.4.4",
-    "babel-loader": "^8.0.6",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "chalk": "^2.4.2",
@@ -66,5 +65,8 @@
     "path": "^0.12.7",
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5"
+  },
+  "engines": {
+    "node": "10.15.1"
   }
 }

@@ -5,8 +5,6 @@ const getAllTripsController = async (req, res) => {
   const { getAllTrips } = tripModel;
   const queryText = getAllTrips;
 
-  if ((req.user.id !== req.value.body.user_id) || (req.user.is_admin !== req.value.body.is_admin)) return res.status(401).json({ status: 401, error: 'invalid token' });
-
   try {
     const { rows } = await query(queryText);
     const trips = rows;

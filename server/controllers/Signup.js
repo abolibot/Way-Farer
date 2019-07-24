@@ -6,10 +6,9 @@ import hashPassword from '../helpers/passwordEncryption';
 import generateToken from '../helpers/tokenGeneration';
 import userModel from '../models/Users';
 
-const { createUser } = userModel;
-const queryText = createUser;
-
 const signup = async (req, res) => {
+  const { createUser } = userModel;
+  const queryText = createUser;
   const hashedPassword = await hashPassword(req.value.body.password, 10);
   const values = [
     req.value.body.firstName,

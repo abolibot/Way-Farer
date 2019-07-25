@@ -11,7 +11,7 @@ const authenticateUser = async (req, res, next) => {
     const value = [authData.email];
     const { rows } = await query(queryText, value);
     const user = rows[0];
-    if (!user) return res.status(401).json({ status: 401, error: 'invalid token' });
+    if ((!user) || (user.id !== req.value.body.user_id) || (user.is_admin !== req.value.body.is_admin)) return res.status(401).json({ status: 401, error: 'invalid token' });
     req.user = user;
     return next();
   } catch (error) {

@@ -6,11 +6,11 @@ import 'dotenv/config';
 import generateToken from '../helpers/tokenGeneration';
 import userModel from '../models/Users';
 
-const { findUserByEmail } = userModel;
-const queryText = findUserByEmail;
-
 const signinController = async (req, res) => {
+  const { findUserByEmail } = userModel;
+  const queryText = findUserByEmail;
   const value = [req.value.body.email];
+
   try {
     const { rows } = await query(queryText, value);
     const user = rows[0];

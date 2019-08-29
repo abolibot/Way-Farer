@@ -1,15 +1,13 @@
 import express from 'express';
 import validators from '../middlewares/validator';
 import schemas from '../helpers/validatorSchema';
-import checkIfEmailExist from '../middlewares/checkIfEmailExist';
-import signupController from '../controllers/Signup';
-import signinController from '../controllers/Signin';
+import authController from '../controllers/AuthController';
 
 const authRouter = express.Router();
 const { validateBody } = validators;
 const { signupSchema, signinSchema } = schemas;
 
-authRouter.post('/signup', validateBody(signupSchema), checkIfEmailExist, signupController);
-authRouter.post('/signin', validateBody(signinSchema), signinController);
+authRouter.post('/signup', validateBody(signupSchema), authController.signup);
+authRouter.post('/signin', validateBody(signinSchema), authController.signin);
 
 export default authRouter;

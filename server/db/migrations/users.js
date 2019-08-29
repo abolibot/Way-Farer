@@ -2,7 +2,7 @@
 import { pool, query } from '../index';
 import 'dotenv/config';
 import hashPassword from '../../helpers/passwordEncryption';
-import generateToken from '../../helpers/tokenGeneration';
+import authentication from '../../middlewares/authentication';
 import userModel from '../../models/Users';
 
 pool.on('connect', () => {
@@ -63,7 +63,7 @@ const seedUser = async () => {
   try {
     const { rows } = await query(queryText, values);
     console.log(rows[0]);
-    const token = generateToken(rows[0]);
+    const token = authentication.generateToken(rows[0]);
     console.log(token);
   } catch (error) {
     console.log(error);

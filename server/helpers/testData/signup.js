@@ -52,15 +52,8 @@ const signup = {
       lastName: '4frx fr7',
     },
 
-    withValidDetails: {
-      email: 'testUser@gmail.com',
-      password: 'pass4321',
-      firstName: 'Test',
-      lastName: 'User',
-    },
-
     user: {
-      email: 'existingUser@gmail.com',
+      email: 'alarantobiloba@gmail.com',
       password: 'pass4321',
       firstName: 'Existing',
       lastName: 'User',
@@ -73,10 +66,10 @@ const signup = {
       lastName: 'User',
     },
 
-    ExistingDetails: {
-      email: 'existingUser@gmail.com',
+    withValidDetails: {
+      email: 'testU@gmail.com',
       password: 'pass4321',
-      firstName: 'Existing',
+      firstName: 'Test',
       lastName: 'User',
     },
   },

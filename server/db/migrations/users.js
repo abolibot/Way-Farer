@@ -2,8 +2,7 @@
 import { pool, query } from '../index';
 import 'dotenv/config';
 import hashPassword from '../../helpers/passwordEncryption';
-import generateToken from '../../helpers/tokenGeneration';
-import userModel from '../../models/Users';
+import authentication from '../../middlewares/authentication';
 
 pool.on('connect', () => {
   console.log('connected to the db');
@@ -50,8 +49,13 @@ const dropUsersTable = () => {
 
 const seedUser = async () => {
   const hashedPassword = await hashPassword('pass4321', 10);
-  const { createUser } = userModel;
-  const queryText = createUser;
+  const queryText = `
+  INSERT INTO
+    users(
+      first_name, last_name, email, is_admin, password)
+    VALUES($1, $2, $3, $4, $5)
+    returning *
+  `;
   const values = [
     'Admin',
     'User',
@@ -63,7 +67,7 @@ const seedUser = async () => {
   try {
     const { rows } = await query(queryText, values);
     console.log(rows[0]);
-    const token = generateToken(rows[0]);
+    const token = authentication.generateToken(rows[0]);
     console.log(token);
   } catch (error) {
     console.log(error);

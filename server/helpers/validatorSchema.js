@@ -1,6 +1,9 @@
 /* eslint-disable max-len */
-import Joi from '@hapi/joi';
-import { getNextSevenDays } from './getDates';
+import BaseJoi from '@hapi/joi';
+import Extension from '@hapi/joi-date';
+import { getNextSevenDays, getToday } from './getDates';
+
+const Joi = BaseJoi.extend(Extension);
 
 const schemas = {
   signupSchema: Joi.object().keys({
@@ -23,7 +26,7 @@ const schemas = {
     bus_id: Joi.number().integer().min(1).required(),
     origin: Joi.string().regex(/^([a-zA-Z0-9]{2,30}[- ]{0,1}[a-zA-Z0-9]{2,30})$/).max(20).required(),
     destination: Joi.string().regex(/^([a-zA-Z0-9]{2,30}[- ]{0,1}[a-zA-Z0-9]{2,30})$/).max(20).required(),
-    trip_date: Joi.date().min('now').max(getNextSevenDays()).iso().required(), // eslint-disable-line newline-per-chained-call
+    trip_date: Joi.date().iso().min(getToday()).max(getNextSevenDays()).required(), // eslint-disable-line newline-per-chained-call
     fare: Joi.number().integer().min(1000).max(15000).required(), // eslint-disable-line newline-per-chained-call
   }),
 };

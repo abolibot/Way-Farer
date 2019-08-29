@@ -1,4 +1,8 @@
-import { getNextSevenDays, getNextEightDays, getPreviousDay } from '../getDates';
+import {
+  getNextEightDays,
+  getPreviousDay,
+  getNextFiveDays,
+} from '../getDates';
 
 const trips = {
   getAllTripsData: {
@@ -26,27 +30,80 @@ const trips = {
         is_admin: 'falsedfjhg',
       },
 
+      withValidDetails: {
+        user_id: 2,
+        is_admin: false,
+      },
+
       withUndefinedReqHeadersAuthorization: {
-        token: undefined,
         user_id: 2,
         is_admin: false,
       },
 
       withInvalidToken: {
-        token: 'iLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYgeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQ',
         user_id: 2,
         is_admin: false,
       },
 
       withUserAuthenticated: {
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQiLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYg',
-        user_id: 2,
+        user_id: 1,
         is_admin: false,
       },
     },
+    allTrips: [
+      {
+        trip_id: 1,
+        bus_id: 1,
+        origin: 'Abuja',
+        destination: 'Lagos',
+        trip_date: '2019-07-26',
+        fare: '8700',
+      },
+      {
+        trip_id: 2,
+        bus_id: 3,
+        origin: 'Benin',
+        destination: 'Lagos',
+        trip_date: '2019-07-26',
+        fare: '5000',
+      },
+      {
+        trip_id: 3,
+        bus_id: 2,
+        origin: 'Sokoto',
+        destination: 'Lagos',
+        trip_date: '2019-07-26',
+        fare: '12000',
+      },
+    ],
   },
 
   createTripData: {
+    validUser: {
+      id: 1,
+      first_name: 'Test',
+      last_name: 'User',
+      email: 'testUser@gmail.com',
+      is_admin: true,
+    },
+
+    invalidUser: {
+      id: 2,
+      first_name: 'Invalid',
+      last_name: 'User',
+      email: 'invalidUser@gmail.com',
+      is_admin: true,
+    },
+
+    createdTrip: {
+      trip_id: 2,
+      bus_id: 3,
+      origin: 'Benin',
+      destination: 'Lagos',
+      trip_date: '2019-07-26',
+      fare: '5000',
+    },
+
     scenarios: {
       withUserAuthenticated: {
         user_id: 1,
@@ -54,9 +111,8 @@ const trips = {
         bus_id: 1,
         origin: 'Lagos',
         destination: 'Abuja',
-        trip_date: getNextSevenDays(),
+        trip_date: getNextFiveDays(),
         fare: 8750,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQiLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYg',
       },
 
       withoutUserId: {
@@ -64,9 +120,8 @@ const trips = {
         bus_id: 1,
         origin: 'Lagos',
         destination: 'Abuja',
-        trip_date: getNextSevenDays(),
+        trip_date: getNextFiveDays(),
         fare: 8750,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQiLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYg',
       },
 
       withInvalidUserId: {
@@ -75,9 +130,8 @@ const trips = {
         bus_id: 1,
         origin: 'Lagos',
         destination: 'Abuja',
-        trip_date: getNextSevenDays(),
+        trip_date: getNextFiveDays(),
         fare: 8750,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQiLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYg',
       },
 
       withZeroAsUserId: {
@@ -86,9 +140,8 @@ const trips = {
         bus_id: 1,
         origin: 'Lagos',
         destination: 'Abuja',
-        trip_date: getNextSevenDays(),
+        trip_date: getNextFiveDays(),
         fare: 8750,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQiLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYg',
       },
 
       withoutIsAdmin: {
@@ -96,9 +149,8 @@ const trips = {
         bus_id: 1,
         origin: 'Lagos',
         destination: 'Abuja',
-        trip_date: getNextSevenDays(),
+        trip_date: getNextFiveDays(),
         fare: 8750,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQiLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYg',
       },
 
       withInvalidIsAdmin: {
@@ -107,9 +159,8 @@ const trips = {
         bus_id: 1,
         origin: 'Lagos',
         destination: 'Abuja',
-        trip_date: getNextSevenDays(),
+        trip_date: getNextFiveDays(),
         fare: 8750,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQiLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYg',
       },
 
       withoutBusId: {
@@ -117,9 +168,8 @@ const trips = {
         is_admin: true,
         origin: 'Lagos',
         destination: 'Abuja',
-        trip_date: getNextSevenDays(),
+        trip_date: getNextFiveDays(),
         fare: 8750,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQiLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYg',
       },
 
       withInvalidBusId: {
@@ -128,9 +178,8 @@ const trips = {
         bus_id: 'as1',
         origin: 'Lagos',
         destination: 'Abuja',
-        trip_date: getNextSevenDays(),
+        trip_date: getNextFiveDays(),
         fare: 8750,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQiLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYg',
       },
 
       withZeroAsBusId: {
@@ -139,9 +188,8 @@ const trips = {
         bus_id: 0,
         origin: 'Lagos',
         destination: 'Abuja',
-        trip_date: getNextSevenDays(),
+        trip_date: getNextFiveDays(),
         fare: 8750,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQiLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYg',
       },
 
       withoutOrigin: {
@@ -149,9 +197,8 @@ const trips = {
         is_admin: true,
         bus_id: 1,
         destination: 'Abuja',
-        trip_date: getNextSevenDays(),
+        trip_date: getNextFiveDays(),
         fare: 8750,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQiLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYg',
       },
 
       withInvalidOrigin: {
@@ -160,9 +207,8 @@ const trips = {
         bus_id: 1,
         origin: ' Lagos',
         destination: 'Abuja',
-        trip_date: getNextSevenDays(),
+        trip_date: getNextFiveDays(),
         fare: 8750,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQiLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYg',
       },
 
       withoutDestination: {
@@ -170,9 +216,8 @@ const trips = {
         is_admin: true,
         bus_id: 1,
         origin: 'Lagos',
-        trip_date: getNextSevenDays(),
+        trip_date: getNextFiveDays(),
         fare: 8750,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQiLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYg',
       },
 
       withInvalidDestination: {
@@ -181,9 +226,8 @@ const trips = {
         bus_id: 1,
         origin: 'Lagos',
         destination: ' Abuja',
-        trip_date: getNextSevenDays(),
+        trip_date: getNextFiveDays(),
         fare: 8750,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQiLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYg',
       },
 
       withoutTripDate: {
@@ -193,7 +237,6 @@ const trips = {
         origin: 'Lagos',
         destination: 'Abuja',
         fare: 8750,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQiLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYg',
       },
 
       withTripDateBeforeToday: {
@@ -204,7 +247,6 @@ const trips = {
         destination: 'Abuja',
         trip_date: getPreviousDay(),
         fare: 8750,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQiLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYg',
       },
 
       withTripDateBeyondSevenDays: {
@@ -215,7 +257,6 @@ const trips = {
         destination: 'Abuja',
         trip_date: getNextEightDays(),
         fare: 8750,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQiLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYg',
       },
 
       withInvalidTripDate: {
@@ -226,7 +267,6 @@ const trips = {
         destination: 'Abuja',
         trip_date: 'vefsdvse',
         fare: 8750,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQiLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYg',
       },
 
       withoutFare: {
@@ -235,8 +275,7 @@ const trips = {
         bus_id: 1,
         origin: 'Lagos',
         destination: 'Abuja',
-        trip_date: getNextSevenDays(),
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQiLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYg',
+        trip_date: getNextFiveDays(),
       },
 
       withInvalidFare: {
@@ -245,9 +284,8 @@ const trips = {
         bus_id: 1,
         origin: 'Lagos',
         destination: 'Abuja',
-        trip_date: getNextSevenDays(),
+        trip_date: getNextFiveDays(),
         fare: '8750wjd',
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQiLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYg',
       },
 
       withLesserFare: {
@@ -256,9 +294,8 @@ const trips = {
         bus_id: 1,
         origin: 'Lagos',
         destination: 'Abuja',
-        trip_date: getNextSevenDays(),
+        trip_date: getNextFiveDays(),
         fare: 900,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQiLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYg',
       },
 
       withGreaterFare: {
@@ -267,9 +304,18 @@ const trips = {
         bus_id: 1,
         origin: 'Lagos',
         destination: 'Abuja',
-        trip_date: getNextSevenDays(),
+        trip_date: getNextFiveDays(),
         fare: 15100,
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQiLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYg',
+      },
+
+      withValidDetails: {
+        user_id: 1,
+        is_admin: true,
+        bus_id: 1,
+        origin: 'Lagos',
+        destination: 'Abuja',
+        trip_date: getNextFiveDays(),
+        fare: 14000,
       },
 
       withUndefinedReqHeadersAuthorization: {
@@ -278,20 +324,18 @@ const trips = {
         bus_id: 1,
         origin: 'Lagos',
         destination: 'Abuja',
-        trip_date: getNextSevenDays(),
+        trip_date: getNextFiveDays(),
         fare: 15000,
-        token: undefined,
       },
 
       withInvalidToken: {
-        user_id: 1,
+        user_id: 2,
         is_admin: true,
         bus_id: 1,
         origin: 'Lagos',
         destination: 'Abuja',
-        trip_date: getNextSevenDays(),
+        trip_date: getNextFiveDays(),
         fare: 15000,
-        token: 'iLCJlbWFpbCI6ImtvYmVicnlhbnRAZ21haWwuY29tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NjMyOTQwNjcsImV4cCI6MTU2MzM4MDQ2N30.qohOQ7fJYJ6bz_R3TptO7FmP0MyPY6goITOvYY4hpYgeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6IktvYmUiLCJsYXN0X25hbWUiOiJCcnlhbnQ',
       },
     },
   },

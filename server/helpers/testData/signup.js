@@ -53,30 +53,9 @@ const signup = {
     },
 
     withValidDetails: {
-      email: 'testUser@gmail.com',
+      email: 'testU@gmail.com',
       password: 'pass4321',
       firstName: 'Test',
-      lastName: 'User',
-    },
-
-    user: {
-      email: 'existingUser@gmail.com',
-      password: 'pass4321',
-      firstName: 'Existing',
-      lastName: 'User',
-    },
-
-    withExistingDetails: {
-      email: 'existingUser@gmail.com',
-      password: 'pass4321',
-      firstName: 'Existing',
-      lastName: 'User',
-    },
-
-    ExistingDetails: {
-      email: 'existingUser@gmail.com',
-      password: 'pass4321',
-      firstName: 'Existing',
       lastName: 'User',
     },
   },

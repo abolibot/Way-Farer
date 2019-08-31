@@ -7,7 +7,7 @@ import sinon from 'sinon';
 import tripModel from '../../server/models/Trips';
 import tripData from '../../server/helpers/testData/trips';
 import tripController from '../../server/controllers/Trips';
-import utils from './utils';
+import utils from '../utils';
 
 chai.should();
 const { res, mockRequest } = utils;

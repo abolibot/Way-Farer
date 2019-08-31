@@ -3,7 +3,10 @@ import { pool, query } from '../index';
 import 'dotenv/config';
 import hashPassword from '../../helpers/passwordEncryption';
 import authentication from '../../middlewares/authentication';
+<<<<<<< HEAD
+=======
 import userModel from '../../models/Users';
+>>>>>>> 150e2f139997141bd7d058cb18ef51e55d6dda11
 
 pool.on('connect', () => {
   console.log('connected to the db');
@@ -50,8 +53,13 @@ const dropUsersTable = () => {
 
 const seedUser = async () => {
   const hashedPassword = await hashPassword('pass4321', 10);
-  const { createUser } = userModel;
-  const queryText = createUser;
+  const queryText = `
+  INSERT INTO
+    users(
+      first_name, last_name, email, is_admin, password)
+    VALUES($1, $2, $3, $4, $5)
+    returning *
+  `;
   const values = [
     'Admin',
     'User',

@@ -30,6 +30,11 @@ const trips = {
         is_admin: 'falsedfjhg',
       },
 
+      withValidDetails: {
+        user_id: 2,
+        is_admin: false,
+      },
+
       withUndefinedReqHeadersAuthorization: {
         user_id: 2,
         is_admin: false,
@@ -301,6 +306,16 @@ const trips = {
         destination: 'Abuja',
         trip_date: getNextFiveDays(),
         fare: 15100,
+      },
+
+      withValidDetails: {
+        user_id: 1,
+        is_admin: true,
+        bus_id: 1,
+        origin: 'Lagos',
+        destination: 'Abuja',
+        trip_date: getNextFiveDays(),
+        fare: 14000,
       },
 
       withUndefinedReqHeadersAuthorization: {

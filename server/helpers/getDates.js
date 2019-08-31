@@ -18,13 +18,13 @@ const getToday = () => {
 const getPreviousDay = () => {
   const d = new Date();
   d.setDate(d.getDate() - 1);
-  return d.toLocaleDateString();
+  return d;
 };
 
 const getNextFiveDays = () => {
   const d = new Date();
   d.setDate(d.getDate() + 5);
-  return d.toLocaleDateString();
+  return d;
 };
 
 export {

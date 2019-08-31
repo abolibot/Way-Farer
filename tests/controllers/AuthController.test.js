@@ -10,7 +10,7 @@ import signupData from '../../server/helpers/testData/signup';
 import signinData from '../../server/helpers/testData/signin';
 import authController from '../../server/controllers/AuthController';
 import authentication from '../../server/middlewares/authentication';
-import utils from './utils';
+import utils from '../utils';
 
 chai.should();
 const { res, mockRequest, mockUser } = utils;
@@ -42,7 +42,7 @@ describe('AuthController', function () {
     });
 
     it('should return \'email already exists\' message when req.email already exist', async function () {
-      const req = mockRequest(signupData.scenarios.withExistingDetails);
+      const req = mockRequest(signupData.scenarios.withValidDetails);
 
       const mockEmailInUse = sinon.stub(userModel, 'emailInUse').returns(true);
       const mockCreateUser = sinon.stub(userModel, 'createUser').returns(user);

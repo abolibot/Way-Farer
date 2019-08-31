@@ -3,6 +3,10 @@ import { pool, query } from '../index';
 import 'dotenv/config';
 import hashPassword from '../../helpers/passwordEncryption';
 import authentication from '../../middlewares/authentication';
+<<<<<<< HEAD
+=======
+import userModel from '../../models/Users';
+>>>>>>> 150e2f139997141bd7d058cb18ef51e55d6dda11
 
 pool.on('connect', () => {
   console.log('connected to the db');

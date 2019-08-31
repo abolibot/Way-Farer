@@ -8,8 +8,8 @@ const tripsRouter = express.Router();
 const { validateBody } = validators;
 const { getAllTrips, createTrip } = schemas;
 
-tripsRouter.get('/', validateBody(getAllTrips), authentication.getToken, authentication.authenticateUser, tripsController.getAllTrips);
+tripsRouter.get('/', validateBody(getAllTrips), authentication.getToken, authentication.verifyUser, tripsController.getAllTrips);
 
-tripsRouter.post('/', validateBody(createTrip), authentication.getToken, authentication.authenticateUser, authentication.isUserAdmin, tripsController.createTrip);
+tripsRouter.post('/', validateBody(createTrip), authentication.getToken, authentication.verifyUser, authentication.isUserAdmin, tripsController.createTrip);
 
 export default tripsRouter;

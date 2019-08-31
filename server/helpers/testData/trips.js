@@ -318,6 +318,16 @@ const trips = {
         fare: 14000,
       },
 
+      withFalseIsAdmin: {
+        user_id: 1,
+        is_admin: false,
+        bus_id: 1,
+        origin: 'Lagos',
+        destination: 'Abuja',
+        trip_date: getNextFiveDays(),
+        fare: 14000,
+      },
+
       withUndefinedReqHeadersAuthorization: {
         user_id: 1,
         is_admin: true,

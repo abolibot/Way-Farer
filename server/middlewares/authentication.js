@@ -4,7 +4,7 @@ import 'dotenv/config';
 import userModel from '../models/Users';
 
 const authentication = {
-  authenticateUser: async (req, res, next) => {
+  verifyToken: async (req, res, next) => {
     try {
       const authData = jwt.verify(req.token, process.env.JWT_SECRET_KEY);
       const user = await userModel.findUserByEmail(authData.email);
